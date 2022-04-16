@@ -1,0 +1,48 @@
+<html>
+<head>
+    {% load static %}
+    <title>www.project_performance_management.com/view/worklist</title>
+    <style>
+        table
+        {
+        text-align:center;
+        }
+        #h1
+        {
+        color:black;
+        position:absolute;
+        text-decoration:none;
+        float:right;
+        right:100px;
+        }
+        table, th, td
+        {
+        width:850px;
+        height:50px;
+        border:1px solid black;
+        border-collapse:collapse;
+        }
+    </style>
+</head>
+<body>
+<div id="h1"><strong><h4><a href="{% url 'tl_home' %}" style="text-decoration:none;">Home</a> | <a href="{% url 'tl_logout' %}" style="text-decoration:none;">Logout</a></h4></strong></div>
+<br><br>
+<h1 style="text-align:center;color:darkorange;">Project Worklist</h1><br>
+    <center>
+        <table><tr style="text-align:center;color:blue;">
+            <strong><th>Working Team</th><th>Team Name</th><th>Start Date</th><th>Deadline Date</th><th>Assigned Date</th><th>Project Paper</th><th>Team Allocation</th></strong></tr>
+            {% for i in view_worklist %}
+            <tr>
+                <td>{{i.module_proj}}</td>
+                <td>{{i.ass_to}}</td>
+                <td>{{i.start_date}}</td>
+                <td>{{i.deadline_date}}</td>
+                <td>{{i.ass_date}}</td>
+                <td><a href="{{fopen}}"><button value="{{i.paper}}">View Document</button></a></td>
+                <td><button type="button"><a href="{% url 'tl_allocate_work' i.module_id %}" style="text-decoration:none; color:black;">Share with Team</a></button></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

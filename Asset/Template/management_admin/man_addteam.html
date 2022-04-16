@@ -1,0 +1,65 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/man_home.css" %}>
+    <title>
+        www.project_performance_management.com/admin/home/
+    </title>
+    <style>
+        #div4
+        {
+        margin-left:350px;
+        width:600px;
+        height:600px;
+        margin-top:100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div2">
+    <center><h1>Project Performance Management</h1></center>
+</div>
+<div id="div1">
+    <div id="div3">
+        <form method="POST">
+            {% csrf_token %}
+            <ul>
+                <li><a href="{% url 'man_home' %}">Home</a></li>
+                <li><a href="{% url 'man_addteam' %}">Create Team</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Software Development</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'projectplan' %}">Project Planning</a>
+                        <a href="{% url 'man_module' %}">Assign Project</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Project Status</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'man_viewreport' %}">Projectwise Report</a>
+                        <a href="{% url 'man_consolidate_report' %}">Daily Status Report</a>
+                        <a href="{% url 'man_viewchart' %}">Daywise Chart</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </form>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div id="div4">
+            <center>
+                <h2 style="color:green">Create New Team</h2><br>
+                <input type="text" name="add_new_team" placeholder="Create New Team" style="text-align:center;width:200px;height:40px;"><br><br>
+                <input type="submit" value="Add" style="width:200px;height:40px;">
+                <p style="color:Green">{{teamcreated}}</p><p style="color:red">{{newteam}}</p>
+            </center>
+        </div>
+        <div id="nam">
+            <p><strong style="color:white">{{name}}</strong> | <a style="text-decoration:none" href="{% url 'logout' %}">
+                <strong style="color:white; text-decoration:none">Logout</strong></a></p>
+        </div><br>
+    </form>
+</div>
+</body>
+</html>

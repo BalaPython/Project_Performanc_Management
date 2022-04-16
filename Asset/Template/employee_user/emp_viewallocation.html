@@ -1,0 +1,49 @@
+<html>
+<head>
+    {% load static %}
+    <title>www.project_performance_management.com/view/worklist</title>
+    <style>
+        table
+        {
+        text-align:center;
+        }
+        #h1
+        {
+        color:black;
+        text-decoration:none;
+        float:right;
+        position:absolute;
+        right:100px;
+        }
+        table, th, td
+        {
+        width:800px;
+        height:50px;
+        border:1px solid black;
+        border-collapse:collapse;
+        text-align:center;
+        }
+    </style>
+</head>
+<body>
+<div id="h1"><strong><h4><a href="{% url 'emp_home' %}" style="text-decoration:none;">Home</a> | <a href="{% url 'emp_logout' %}" style="text-decoration:none;">Logout</a></h4></strong></div>
+<br><br>
+<h1 style="text-align:center;color:darkorange;">View Worklist</h1><br>
+    <center>
+        <table><tr style="text-align:center;color:blue;">
+            <strong><th>Working Team</th><th>Team Name</th><th>Start Date</th><th>Deadline Date</th><th>Assigned Date</th><th>Project Paper</th><th>Day Status Update</th></strong></tr>
+            {% for i in view_work %}
+            <tr style="text-align:center;">
+                <td>{{i.tl_module_proj}}</td>
+                <td>{{i.tl_ass_to}}</td>
+                <td>{{i.tl_start_date}}</td>
+                <td>{{i.tl_deadline_date}}</td>
+                <td>{{i.tl_ass_date}}</td>
+                <td><a href="{{i.tl_paper}}"><button value="{{i.tl_paper}}">View Document</button></a></td>
+                <td><button><a href="{% url 'emp_daily_status' i.man_module_id %}" style="text-decoration:None;color:black;"><strong>Update Status</strong></a></button></td>
+            </tr>
+          {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

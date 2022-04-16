@@ -1,0 +1,48 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/tl_allocate_work.css" %}>
+    <title>
+        www.project_performance_management.com/teamleader/assign_to_team/
+    </title>
+    <script>
+        function validation()
+        {
+            <!-- Module for Project -->
+            var mod = document.tl_proj.module.selectedIndex;
+            if(mod == "")
+            {
+            alert("Please select your Project Module");
+            document.tl_proj.module.focus();
+            return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1"><br><br>
+    <center><h1>Project Performance Management</h1></center>
+    <div id="div2">
+    <form method="POST" name="tl_proj"><br>
+        {% csrf_token %}
+        <center><h3>Project Assign to Developer</h3></center>
+        <div id="div3"><strong><h4><a style="color:white; text-decoration:none;" href="{% url 'tl_home' %}">Home</a> | <a style="color:white; text-decoration:none;" href="{% url 'tl_workallocation' %}">Allocation</a> | <a style="text-decoration:none; color:white;" href="{% url 'tl_logout' %}">Logout</a></h4></strong></div>
+        <label>Module</label>
+        <input type="text" name="module" value="{{ta.module_proj}}" id="mod"><br><br>
+        <label>Start Date</label>
+        <input type="date" name="start_date" value="{{ta.start_date}}" id="sd"><br><br>
+        <label>DeadLine Date</label>
+        <input type="date" name="deadline_date" value="{{ta.deadline_date}}" id="dd"><br><br>
+        <label>Team Name</label>
+        <input type="text" name="tl_team_name" value="{{ta.ass_to}}" id="at"><br><br>
+        <label>Assigned Date</label>
+        <input type="date" name="assigned_date" value="{{ta.ass_date}}" id="ad"><br><br>
+        <label>Project Paper</label>
+        <input type="text" name="tl_doc" value="{{fopen}}" id="pp"><br><br>
+        <strong><p style="color:red;">{{atmsg}}</p><p style="color:green;">{{asmsg}}</p></strong>
+        <input type="submit" onsubmit="validation" id="sub">
+    </form>
+    </div>
+</div>
+</body>
+</html>

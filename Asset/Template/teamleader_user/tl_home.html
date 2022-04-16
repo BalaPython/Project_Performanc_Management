@@ -1,0 +1,42 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/tl_home.css" %}>
+    <title>
+        www.project_performance_management.com/tl/home/
+    </title>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"><br>
+        <center><h1>Project Performance Management</h1></center>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div id="div3">
+            <ul>
+                <li><a href="{% url 'emp_home' %}">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Work Allocation</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'tl_workallocation' %}">Worklist</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Status View</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'tl_viewreport' %}">Work Status Report</a>
+                        <a href="{% url 'tl_teamwise_report' %}">Daily Status Report</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'tl_logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </form>
+    <div id="nam">
+        <p><strong style="color:white">{{name}}</strong> | <a style="text-decoration:none" href="{% url 'tl_logout' %}">
+            <strong style="color:white; text-decoration:none">Logout</strong></a></p>
+    </div>
+</div>
+</body>
+</html>

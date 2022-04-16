@@ -1,0 +1,54 @@
+<html>
+<head>
+    {% load static %}
+    <title>www.project_performance_management.com/view/status</title>
+    <style>
+        table
+        {
+        text-align:center;
+        }
+        #h1
+        {
+        color:black;
+        text-decoration:none;
+        position:absolute;
+        float:right;
+        right:100px;
+        }
+        table, th, td
+        {
+        width:1800px;
+        height:50px;
+        border:1px solid black;
+        border-collapse:collapse;
+        }
+    </style>
+</head>
+<body>
+<div id="h1"><strong><h4><a href="{% url 'man_home' %}" style="text-decoration:none;">Home</a> | <a href="{% url 'logout' %}" style="text-decoration:none;">Logout</a></h4></strong></div>
+<br><br>
+<h1 style="text-align:center;color:darkorange;">Consolidated Status Report</h1><br>
+    <center>
+        <table><tr style="text-align:center;color:blue;">
+            <strong><th>Project ID</th><th>Manager ID</th><th>Working Team</th><th>Team Name</th><th>Start Date</th><th>Deadline Date</th><th>Assigned Date</th><th>Project Name</th><th>Developer ID</th><th>Date</th><th>Percentage</th><th>Project Status</th><th>Reason</th></strong></tr>
+            {% for i in result %}
+            <tr>
+                <td>{{i.11}}</td>
+                <td>{{i.12}}</td>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+                <td>{{i.2}}</td>
+                <td>{{i.3}}</td>
+                <td>{{i.4}}</td>
+                <td>{{i.5}}</td>
+                <td>{{i.6}}</td>
+                <td>{{i.7}}</td>
+                <td>{{i.8}}</td>
+                <td>{{i.9}}</td>
+                <td>{{i.10}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

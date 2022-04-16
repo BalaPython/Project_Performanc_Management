@@ -1,0 +1,70 @@
+<html>
+<head>
+    {% load static %}
+    <title><w></w>ww.project_performance_management.com/view/status</title>
+    <style>
+        table
+        {
+        text-align:center;
+        }
+        #h1
+        {
+        color:black;
+        text-decoration:none;
+        float:right;
+        position:absolute;
+        right:100px;
+        }
+        table, th, td
+        {
+        width:1000px;
+        height:50px;
+        border:1px solid black;
+        border-collapse:collapse;
+        }
+    </style>
+    <script>
+        $("#nav a").click(function(e){
+        e.preventDefault();
+        $(".toggle").hide();
+        var toShow = $(this).attr('href');
+        $(toShow).show();
+        });
+    </script>
+
+</head>
+<body>
+<div id="h1"><strong><h4><a href="{% url 'man_home' %}" style="text-decoration:none;">Home</a> | <a href="{% url 'man_viewreport' %}" style="text-decoration:none;">Overall Report</a> | <a href="{% url 'logout' %}" style="text-decoration:none;">Logout</a></h4></strong></div>
+<br><br>
+<h1 style="text-align:center;color:darkorange;">Delay for Project Completion</h1><br>
+    <center>
+        <table><tr style="text-align:center;color:blue;">
+            <strong><th>Project ID</th><th>Working Team</th><th>Team Name</th><th>Developer ID</th><th>Reason</th><th>Delay Days Count</th></strong></tr>
+            {% for i in result %}
+            <tr>
+                <td>{{i.11}}</td>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+                <td>{{i.6}}</td>
+                <td>{{i.10}}</td>
+                <td>{{i.12}}</td>
+            </tr>
+          {% endfor %}
+        </table><br><br>
+        <table><tr style="text-align:center;color:blue;">
+            <strong><th>Project ID</th><th>Working Stage<th>Date</th><th>Developer ID</th><th>Daily Percentage</th><th>Reason</th></strong></tr>
+                {% for j in display %}
+                <tr>
+                    <td>{{j.man_module_id}}</td>
+                    <td>{{j.emp_module_proj}}</td>
+                    <td>{{j.date}}</td>
+                    <td>{{j.emp_mail}}</td>
+                    <td>{{j.work_completion}}</td>
+                    <td>{{j.reason}}</td>
+                </tr>
+              {% endfor %}
+            </table>
+        </div>
+    </center>
+</body>
+</html>

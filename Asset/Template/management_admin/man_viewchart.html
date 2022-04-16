@@ -1,0 +1,87 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/viewchart.css" %}>
+    <title>
+        www.online_job_recruiters.com/admin/home/
+    </title>
+    <script>
+        window.onload = function ()
+        {
+            var chart = new CanvasJS.Chart("chartContainer",
+            {
+                animationEnabled: true,
+                theme: "light2",
+                title:
+                {
+                    text: "Daywise chart on Employee Status"
+                },
+                axisX:
+                {
+                title:"Percentage"
+                },
+                axisY:
+                {
+                title:"Employee"
+                },
+                data:
+                [{
+                    type: "column",
+                    indexLabelFontSize: 10,
+                    yValueFormatString: "##0\"%\"",
+                    indexLabel: "{y}",
+                dataPoints:
+                [
+                    {% for o in objects %}
+                       {y: {{o.work_completion}}, label: "{{o.emp_mail}}"},
+                    {% endfor %}
+                ]
+            }]
+        });
+        chart.render();
+        }
+    </script>
+</head>
+<body><div id="div2">
+    <center><h1>Project Performance Management</h1></center>
+</div>
+<div id="div1">
+    <div id="div3">
+        <form method="POST" name="form_chart" onsubmit="return function()">
+            {% csrf_token %}
+            <ul>
+                <li><a href="{% url 'man_home' %}">Home</a></li>
+                <li><a href="{% url 'man_addteam' %}">Create Team</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Software Development</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'projectplan' %}">Project Planning</a>
+                        <a href="{% url 'man_module' %}">Assign Project</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Project Status</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'man_viewreport' %}">Projectwise Report</a>
+                        <a href="{% url 'man_consolidate_report' %}">Daily Status Report</a>
+                        <a href="{% url 'man_viewchart' %}">Daywise Chart</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        <center>
+            <strong><label style="position:absolute; top:200px;right:715px; color:black;">Select Date</label></strong>
+            <input type="date" name="date_chart" style="position:absolute; top:230px;right:650px;">
+            <input type="submit" onsubmit="function()" style="position:absolute; top:230px;right:570px;"><br><br><br>
+            <div id="chartContainer" style="height: 300px; width: 75%; margin-left:350px; margin-top:100px;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </center>
+        </form>
+        </div>
+    </div>
+    <div id="nam">
+        <p><strong style="color:white">{{name}}</strong> | <a style="text-decoration:none" href="{% url 'logout' %}">
+            <strong style="color:white; text-decoration:none">Logout</strong></a></p>
+    </div>
+</body>
+</html>

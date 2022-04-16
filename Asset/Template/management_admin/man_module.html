@@ -1,0 +1,58 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/man_module.css" %}>
+    <title>
+        www.project_performance_management.com/module plan/assign resource
+    </title>
+    <script>
+        function validation()
+        {
+            <!-- Module for Project -->
+            var mod = document.mod_proj.module.selectedIndex;
+            if(mod == "")
+            {
+            alert("Please select your Project Module");
+            document.mod_proj.module.focus();
+            return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1"><br>
+    <center><h1>Project Performance Management</h1></center>
+    <div id="div3"><strong><h4><a style="color:purple; text-decoration:none;" href="{% url 'man_home' %}">Home</a> | <a style="text-decoration:none; color:purple;" href="{% url 'logout' %}">Logout</a></h4></strong></div>
+    <div id="div2">
+    <form method="POST" name="mod_proj" enctype="multipart/form-data"><br>
+        {% csrf_token %}
+        <center><h3>Project Allocate to Team</h3></center>
+        <label>Skilled</label>
+        <select name='module' id="mod">
+            <option disabled="true" selected>Select</option>
+            {% for i in project_module.module_count %}
+                <option value="{{i}}" >{{i}}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Start Date</label>
+        <input type="date" name="start_date" id="sd"><br><br>
+        <label>DeadLine Date</label>
+        <input type="date" name="deadline_date" id="dd"><br><br>
+        <label>Assigned To</label>
+        <select name="tl_team_name" id="at">
+            <option disabled="true" selected> Select Team </option>
+            {% for i in tltname %}
+                <option>{{i.addteam}}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Assigned Date</label>
+        <input type="date" name="assigned_date" id="ad"><br><br>
+        <label>Project Paper</label>
+        <input type="file" name="abstract" id="abst"><br>
+        <center><p style="color:Green">{{ass_team}}</p><p style="color:Yellow">{{ta}}</p></center>
+        <input type="submit" onsubmit="validation" id="sub">
+    </form>
+    </div>
+</div>
+</body>
+</html>

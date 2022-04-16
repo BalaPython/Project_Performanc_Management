@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>
+        www.project_performance_management.com/daily_status_update/
+    </title>
+    <style>
+        #h1
+        {
+        color:black;
+        position:absolute;
+        text-decoration:none;
+        float:right;
+        right:100px;
+        }
+        #des
+        {
+        width:400px;
+        height:300px;
+        margin-left:550px;
+        border:2px solid green;
+        }
+        label
+        {
+        margin-left:40px;
+        }
+        #daily
+        {
+        margin-left:50px;
+        }
+        #reason
+        {
+        position:absolute;
+        top:310px;
+        }
+        textarea
+        {
+        margin-left:121px;
+        }
+        #sub
+        {
+        margin-left:250px;
+        width:80px;
+        height:30px;
+        }
+    </style>
+<!--    <script type="text/javascript">
+        function validation()
+        {-->
+        <!--Current Date-->
+        <!--alert(data.tl_ass_date)
+        }
+    </script>-->
+</head>
+<body>
+<div id="h1"><strong><h4><a href="{% url 'emp_home' %}" style="text-decoration:none;">Home</a> | <a href="{% url 'emp_viewallocation' %}" style="text-decoration:none;">Worklist</a> | <a href="{% url 'emp_logout' %}" style="text-decoration:none;">Logout</a></h4></strong></div>
+<center><h1 style="text-align:center;color:darkorange;">Project Performance Management</h1><br><br>
+<h3 style="text-align:center;color:darkorange;">Daily Status Update</h3><br></center>
+<form method="POST" name="dailystatus" onsubmit="return validation()">
+    {% csrf_token %}
+    <div id="des"><br><br>
+        <label>Date</label>
+        <input type="text" name="daily_date" id="daily" value="{{date_today}}" readonly><br><br>
+        <!--<input type="date" name="daily_date" id="daily"><br><br>-->
+        <label>Work Status</label>
+        <select name='daily_per'>
+            <option disabled="true" selected >Select</option>
+            {% for i in p.percentage %}
+            <option value="{{i}}" >{{i}}</option>
+            {% endfor %}
+        </select><br><br>
+        <label id="reason">Reason</label>
+        <textarea rows="3" cols ="30" name="reason" placeholder="Enter valid reason for today pending work..."></textarea><br><br><br>
+        <center><p style="color:red;">{{fail}}{{datereg}}</p><p style="color:green;">{{suces}}</p></center>
+        <input type="submit" onsubmit="validation" id="sub">
+    </div>
+</form>
+</body>
+</html>

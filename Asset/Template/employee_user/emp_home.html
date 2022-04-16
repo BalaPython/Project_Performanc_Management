@@ -1,0 +1,44 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/emp_home.css" %}>
+    <title>
+        www.project_performance_management.com/admin/home/
+    </title>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"><br>
+        <center>
+            <h1>Project Performance Management</h1>
+            <h3>Employee Home Page</h3>
+        </center>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div id="div3">
+            <ul>
+                <li><a href="{% url 'emp_home' %}">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Allocated Project</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'emp_viewallocation' %}">View Allocation</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Status View</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'viewreport' %}">Work Status Report</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'emp_logout' %}">Logout</a></li>
+            </ul>
+            </div>
+    </form>
+    <div id="nam">
+        <p><strong style="color:white">{{empwork_id}}</strong> | <a style="text-decoration:none" href="{% url 'emp_logout' %}">
+            <strong style="color:white; text-decoration:none">Logout</strong></a></p>
+    </div>
+</div>
+</body>
+</html>

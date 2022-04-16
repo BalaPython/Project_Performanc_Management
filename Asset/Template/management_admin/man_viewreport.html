@@ -1,0 +1,53 @@
+<html>
+<head>
+    {% load static %}
+    <title>www.project_performance_management.com/view/status</title>
+    <style>
+        table
+        {
+        text-align:center;
+        }
+        #h1
+        {
+        color:black;
+        text-decoration:none;
+        float:right;
+        position:absolute;
+        right:100px;
+        }
+        table, th, td
+        {
+        width:1350px;
+        height:50px;
+        border:1px solid black;
+        border-collapse:collapse;
+        }
+    </style>
+</head>
+<body>
+<div id="h1"><strong><h4><a href="{% url 'man_home' %}" style="text-decoration:none;">Home</a> | <a href="{% url 'logout' %}" style="text-decoration:none;">Logout</a></h4></strong></div>
+<br><br>
+<h1 style="text-align:center;color:darkorange;">Work Allocation Status Report</h1><br>
+    <center>
+        <table><tr style="text-align:center;color:blue;">
+            <strong><th>Project ID</th><th>Working Team</th><th>Team Name</th><th>Start Date</th><th>Deadline Date</th><th>Assigned Date</th><th>Project Paper</th><th>Recent Status Update Date</th><th>Project Status</th><th>Reason for Pending Work, if not completed</th><th>Daywise Project Report</th><th>Delay Report</th></strong></tr>
+            {% for i in proj_report %}
+            <tr>
+                <td>{{i.man_module_id}}</td>
+                <td>{{i.tl_module_proj}}</td>
+                <td>{{i.tl_ass_to}}</td>
+                <td>{{i.tl_start_date}}</td>
+                <td>{{i.tl_deadline_date}}</td>
+                <td>{{i.tl_ass_date}}</td>
+                <td><a href="{{i.tl_paper}}"><button value="{{i.tl_paper}}">View Document</button></a></td>
+                <td>{{i.status_date}}</td>
+                <td>{{i.tl_proj_status}}</td>
+                <td>{{i.proj_reason}}</td>
+                <td><button type="button"><a href="{% url 'overall_status_report' i.man_module_id %}" style="text-decoration:None;color:black;"><strong>View Daywise Report</strong></a></button></td>
+                <td><button type="button"><a href="{% url 'man_projwise_delay' i.man_module_id %}" style="text-decoration:None;color:black;"><strong>Reason for Delay Report</strong></a></button></td>
+            </tr>
+          {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/home.css" %}>
+    <title>
+        www.project_performance_management.com/home/
+    </title>
+</head>
+<body>
+<div id="div1">
+<div id="div3"><br><br><center><h1>Project Performance Management</h1></center></div>
+    <form method="post">
+        {% csrf_token %}
+        <center>
+            <div id="div2">
+                <button type="button" class="b1" id="man"><a href="{% url 'man_login' %}">Project Manager</a></button>
+                <button type="button" class="b1" id="tl"><a href="{% url 'tl_login' %}">Team Leader</a></button>
+                <button type="button" class="b1" id="emp"><a href="{% url 'emp_login' %}">Developer</a></button>
+            </div>
+        </center>
+        <div id="div4"></div>
+    </form>
+</div>
+</body>
+</html>

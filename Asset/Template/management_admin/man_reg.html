@@ -1,0 +1,127 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/reg.css" %}>
+    <title>
+        www..com/user/registration/
+    </title>
+    <script type="text/javascript" >
+    function validation()
+        {
+            var ch=/^[a-zA-Z]+$/;
+
+            <!--FirstName-->
+            var a = document.reg.fn.value;
+            if(a=="")
+            {
+            alert("Please enter your First Name");
+            document.reg.fn.focus();
+            return false;
+            }
+            if(!ch.test(a))
+            {
+            alert("Please enter Alphabets Only")
+            document.reg.fn.select();
+            return false;
+            }
+
+            <!--LastName-->
+            var b = document.reg.ln.value;
+            if(b=="")
+            {
+            alert("Please enter your Last Name");
+            document.reg.ln.focus();
+            return false;
+            }
+            if(!ch.test(b))
+            {
+            alert("Please enter Alphabets Only")
+            document.reg.ln.select();
+            return false;
+            }
+
+            <!--Email-->
+            var z = /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i;
+            var c = document.reg.mail.value;
+            if(c=="")
+            {
+            alert("Please enter your Email ID :");
+            document.reg.mail.focus();
+            return false;
+            }
+            if(z.test(c)==false)
+            {
+            alert("Please enter valid Email ID");
+            document.reg.mail.focus();
+            return false;
+            }
+
+            <!--Password-->
+            var d = document.reg.pword.value;
+            if(d=="")
+            {
+            alert("Please Enter Your Password");
+            document.reg.pword.focus();
+            return false;
+            }
+            if ((d.length < 4) || (d.length > 8))
+            {
+            alert("Your Password must be 4 to 8 Character");
+            document.reg.pword.select();
+            return false;
+            }
+
+            <!--Confirm Password-->
+            var e = document.reg.conpword.value;
+            if(e=="")
+            {
+            alert("Please Re-type Your Password");
+            document.reg.conpword.focus();
+            return false;
+            }
+            if(e != d)
+            {
+            alert("Password is not matching with Confirm Password - Retype Again");
+
+            document.reg.pword.focus();
+            return false;
+            }
+            if ((e.length < 4) || (e.length > 8))
+            {
+            alert("Your Password must be 4 to 8 Character");
+            document.reg.pword.select();
+            return false;
+            }
+
+            <!--Terms and Conditions-->
+            var f = document.reg.accept;
+            if(f.checked==false)
+            {
+            alert("Please accept Terms and Conditions");
+            document.reg.accept.select();
+            return false;
+            }
+        }
+    </script>
+</head>
+<body><br>
+<h1 id="d1">Project Management/Manager</h1><br>
+<div id="d2">
+    <div id="d13">
+        <form name="reg" method="POST" onsubmit="return validation()"><br>
+            {% csrf_token %}
+            <strong><button style="margin-left:280px; margin-top:5px;"><a href="{% url 'home' %}" style="text-decoration:none;">Home</a></button><br></strong>
+            <h2 id ="d3">Sign Up</h2>
+            <label id="d4">Please fill in this form to create an account!</label><br><br><br>
+            <input type="text" name="fn" placeholder="First Name" id="d7">
+            <input type="text" name="ln" placeholder="Last Name" id="d8"><br><br>
+            <input type="email" name="mail" placeholder="Email" id="d5"><br><br>
+            <input type="password" name="pword" placeholder="Password" id="d6"><br><br>
+            <input type="password" name="conpword" placeholder="Confirm Password" id="d9"><br><br>
+            <input type="submit" value="Sign Up" id="button1" onsubmit="validation">
+        </form>
+    </div><br>
+    <label id="d11">Already have an account?</label><a href="{% url 'man_login' %}" id="d12">Login here</a>
+</div>
+</body>
+</html>

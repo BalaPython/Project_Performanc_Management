@@ -1,0 +1,29 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href={% static "css/emp_login.css" %}>
+    <title>
+        www.project_performance_management.com/emp_login
+    </title>
+</head>
+<body>
+<div id="div1"><br><br><br>
+    <center>
+        <h1>Project Performance Management</h1>
+        <h3>Manager Login</h3>
+    </center>
+    <div id="div2">
+        <form method="POST" name="employee_user"><br>
+            <strong><button id="b1"><a style="text-decoration:none;" href="{% url 'home' %}">Home</a></button><br><br></strong>
+            {% csrf_token %}
+            <label>Username</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="man"><br><br>
+            <label>Password</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="password" name="pwd"><br><br>
+            <button id="b2"><a style="text-decoration:none;color:black;" href="{% url 'man_reg' %}">Signup</a></button>
+            <input type="submit" value="Submit" id="b3">
+        </form>
+    </div>
+</div>
+</body>
+</html>
